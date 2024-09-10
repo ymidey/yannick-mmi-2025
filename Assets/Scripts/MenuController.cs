@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    public void LoadLevelOne()
+    [Header("References")]
+    [SerializeField] LevelButtonController m_ButtonPrefab;
+    [SerializeField] Transform m_Root;
+
+    [Header("Properties")]
+    [SerializeField] int m_FirstSceneIndex = 1;
+    private void Awake()
     {
-        SceneManager.LoadScene(1);
-    }
-    
-    public void LoadLevelTwo()
-    {
-        SceneManager.LoadScene(2);
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+
+        for (int i = m_FirstSceneIndex; i < sceneCount; i++)
+        {
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
+            LevelButtonController button = Instantiate<LevelButtonController>(m_ButtonPrefab, m_Root);
+            button.Bind(sceneName);
+        }
     }
 }
