@@ -19,11 +19,10 @@ public class ScoreManager
     }
     #endregion
 
-    public static readonly int MAXMIMUM_SCORE = CollectibleController.COUNT;
-
     public Action ScoreChanged;
 
     public int Score { get; private set; }
+    public int MaxScore => CollectibleController.COUNT;
 
     public void AddScore()
     {

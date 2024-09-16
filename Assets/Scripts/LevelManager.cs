@@ -22,8 +22,16 @@ public class LevelManager
     public void LoadNextLevel()
     {
         Scene activeScene = SceneManager.GetActiveScene();
+        int nextLevelIndex = activeScene.buildIndex + 1;
 
-        SceneManager.LoadScene(activeScene.buildIndex + 1);
-        ScoreManager.Instance.Reset();
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextLevelIndex);
+            ScoreManager.Instance.Reset();
+        }
+        else
+        {
+            UnityEngine.Debug.LogErrorFormat("Can't find any level with index {0}. Please add one to the Build Settings", nextLevelIndex);
+        }
     }
 }

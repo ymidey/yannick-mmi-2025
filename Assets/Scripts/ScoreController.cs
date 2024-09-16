@@ -17,13 +17,14 @@ public class ScoreController : MonoBehaviour
         ScoreManager.Instance.ScoreChanged -= UpdateScoreDisplay;
     }
 
-    private void Awake()
+    private void Start()
     {
         UpdateScoreDisplay();
     }
 
     public void UpdateScoreDisplay()
     {
-        m_ScoreLabel.text = string.Format(SCORE_FORMAT, ScoreManager.Instance.Score, ScoreManager.MAXMIMUM_SCORE);
+        Debug.Log("MAX:" + ScoreManager.Instance.MaxScore);
+        m_ScoreLabel.text = string.Format(SCORE_FORMAT, ScoreManager.Instance.Score, ScoreManager.Instance.MaxScore);
     }
 }

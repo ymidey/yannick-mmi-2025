@@ -6,14 +6,14 @@ public class CollectibleController : MonoBehaviour
 
     public static int COUNT = 0;
 
-    private void OnEnable()
+    private void Awake()
     {
         COUNT++;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        COUNT++;
+        COUNT--;
     }
 
     private void OnTriggerEnter(Collider other)

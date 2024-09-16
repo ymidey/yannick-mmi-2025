@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class GameController : MonoBehaviour
 
     private void CheckLevelCompletion()
     {
-        if (ScoreManager.Instance.Score < ScoreManager.MAXMIMUM_SCORE)
+        if (ScoreManager.Instance.Score < ScoreManager.Instance.MaxScore)
         {
             return;
         }
