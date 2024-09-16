@@ -6,7 +6,12 @@ public class CollectibleController : MonoBehaviour
 
     public static int COUNT = 0;
 
-    private void Awake()
+    private void OnEnable()
+    {
+        COUNT++;
+    }
+
+    private void OnDisable()
     {
         COUNT++;
     }

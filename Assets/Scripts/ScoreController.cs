@@ -7,19 +7,23 @@ public class ScoreController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI m_ScoreLabel;
 
-    private void Start()
+    private void OnEnable()
     {
-        ScoreManager.Instance.OnAddScore += UpdateScoreDisplay;
+        ScoreManager.Instance.ScoreChanged += UpdateScoreDisplay;
+    }
+
+    private void OnDisable()
+    {
+        ScoreManager.Instance.ScoreChanged -= UpdateScoreDisplay;
+    }
+
+    private void Awake()
+    {
         UpdateScoreDisplay();
     }
 
     public void UpdateScoreDisplay()
     {
         m_ScoreLabel.text = string.Format(SCORE_FORMAT, ScoreManager.Instance.Score, ScoreManager.MAXMIMUM_SCORE);
-    }
-
-    private void OnDestroy()
-    {
-        ScoreManager.Instance.OnAddScore -= UpdateScoreDisplay;
     }
 }

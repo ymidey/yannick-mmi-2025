@@ -21,13 +21,18 @@ public class ScoreManager
 
     public static readonly int MAXMIMUM_SCORE = CollectibleController.COUNT;
 
-    public event Action OnAddScore;
+    public Action ScoreChanged;
 
     public int Score { get; private set; }
 
     public void AddScore()
     {
         Score++;
-        OnAddScore();
+        ScoreChanged?.Invoke();
+    }
+
+    public void Reset()
+    {
+        Score = 0;
     }
 }
