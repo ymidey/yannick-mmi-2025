@@ -14,7 +14,7 @@ public class ObstacleScaleController : MonoBehaviour
 
     private void Awake()
     {
-        m_Delay = Random.Range(1f, 3f);
+        m_Delay = Random.Range(.8f, .8f);
         m_Scale = transform.localScale;
         SetTargetScale();
     }

@@ -8,9 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GM-Grid-11-URP
-  m_Shader: {fileID: -6465566751694194690, guid: 44f8dfd6d74d14469bb0ef07b544f59e,
-    type: 3}
-  m_Parent: {fileID: 2100000, guid: 12560c7708f2e4a17953d601a2c13647, type: 2}
+  m_Shader: {fileID: 15301, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -31,10 +30,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Smoothness: 0
+    - _Metallic: 1
+    - _Smoothness: 0.39
     - _Tiling: 2
     m_Colors:
-    - _Base_Color: {r: 0.12967247, g: 0.4986872, b: 0.5849056, a: 1}
+    - _Base_Color: {r: 1, g: 0.50057346, b: 0.3726415, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3729133454598192734
 MonoBehaviour:

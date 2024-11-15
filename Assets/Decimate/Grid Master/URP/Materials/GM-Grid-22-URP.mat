@@ -89,7 +89,7 @@ Material:
     m_Colors:
     - _Dirt_Color: {r: 0.081434675, g: 0.09309005, b: 0.2830189, a: 0}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Side_Color: {r: 0.36494306, g: 0.3655146, b: 0.5566038, a: 1}
+    - _Side_Color: {r: 0.4285333, g: 0.4285333, b: 0.8490566, a: 1}
     - _Side_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Top_Color: {r: 0.14684941, g: 0.21662608, b: 0.41509432, a: 1}
     - _Top_Offset: {r: 0, g: 0, b: 0, a: 0}

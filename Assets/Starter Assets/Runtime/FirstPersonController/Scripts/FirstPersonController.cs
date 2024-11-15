@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+
 #endif
 
 namespace StarterAssets
@@ -11,7 +12,11 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		[Header("Player")]
+        public AudioSource footstepAudioSource;
+        public AudioClip[] footstepSounds;       
+        private float stepCooldown = 0.5f;  
+
+        [Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
@@ -156,11 +161,30 @@ namespace StarterAssets
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
-			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+			// Gestion du son des pas
+			if (_input.sprint && _input.move != Vector2.zero)
+			{
+				// Si le personnage court et qu'il y a une direction de mouvement, on joue le son de pas s'il n'est pas déjà joué
+				if (!footstepAudioSource.isPlaying)
+				{
+                        PlayRandomFootstepSound();
+                }
+			}
+			else
+			{
+				// Si le personnage ne court pas ou s'il est immobile, on arrête le son de pas
+				if (footstepAudioSource.isPlaying)
+				{
+					footstepAudioSource.Stop();
+				}
+			}
+
+                // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+
+                // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+                // if there is no input, set the target speed to 0
+                if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -264,5 +288,14 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+        // Fonction pour jouer un son de pas aléatoire
+        private void PlayRandomFootstepSound()
+        {
+            // Choisit un clip aléatoire dans le tableau
+            int randomIndex = Random.Range(0, footstepSounds.Length);
+            footstepAudioSource.clip = footstepSounds[randomIndex];
+            footstepAudioSource.Play();
+        }
+    }
 }
